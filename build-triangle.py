@@ -22,7 +22,7 @@ print("=== CUMULATIVE TRIANGLE ===")
 print(cumulative.round(0))
 
 # Evaluation date - what we know as of this point in time
-eval_date = pd.Period("2024-01", "M")
+eval_date = pd.Period("2023-10", "M")
 
 # Mask future cells - convert index and columns to periods for comparison
 for acc_period in cumulative.index:
