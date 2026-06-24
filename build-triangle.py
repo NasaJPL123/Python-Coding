@@ -20,3 +20,16 @@ print(incremental.round(0))
 print()
 print("=== CUMULATIVE TRIANGLE ===")
 print(cumulative.round(0))
+
+# Evaluation date - what we know as of this point in time
+eval_date = pd.Period("2024-01", "M")
+
+# Mask future cells - convert index and columns to periods for comparison
+for acc_period in cumulative.index:
+    for lag in cumulative.columns:
+        if pd.Period(acc_period, "M") + lag > eval_date:
+            cumulative.loc[acc_period, lag] = np.nan
+            incremental.loc[acc_period, lag] = np.nan
+
+print("=== CUMULATIVE TRIANGLE (masked) ===")
+print(cumulative.round(0))
